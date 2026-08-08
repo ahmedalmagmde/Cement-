@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title data-ar="بلاغات السلامة في المصنع – شركة اسمنت المتحدة الصناعية" data-en="Plant Safety Reports – United Cement Industrial Company">بلاغات السلامة في المصنع – شركة اسمنت المتحدة الصناعية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1E2F6B;
+    --navy-dark:#141F49;
+    --navy-light:#EEF1FA;
+    --gold:#B99342;
+    --page:#F4F6FB;
+    --ink:#1B2333;
+    --panel:#FFFFFF;
+    --panel-2:#F7F8FC;
+    --line:#E3E7F1;
+    --text:#1F2937;
+    --text-dim:#6B7686;
+    --red:#D3453D;
+    --red-bg:#FCECEB;
+    --amber:#B4791F;
+    --amber-bg:#FBF1E2;
+    --green:#1C8A5B;
+    --green-bg:#E9F8F1;
+    --radius:10px;
+    --shadow:0 1px 2px rgba(20,31,73,0.04), 0 8px 24px -12px rgba(20,31,73,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0; padding:0;}
+  body{
+    background:var(--page);
+    color:var(--text);
+    font-family:'Tajawal','Inter',sans-serif;
+    min-height:100vh;
+    padding:0 0 50px;
+  }
+  html[lang="en"] body{font-family:'Inter','Tajawal',sans-serif;}
+  a{color:inherit;}
+
+  /* ---------- Top brand bar (site header) ---------- */
+  .topbar{
+    background:linear-gradient(90deg,var(--navy) 0%,var(--navy-dark) 100%);
+    padding:14px 18px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    box-shadow:0 2px 10px rgba(20,31,73,0.18);
+  }
+  .topbar-brand{display:flex; align-items:center; gap:12px;}
+  .topbar .logo{width:42px; height:42px; border-radius:8px; background:#fff; flex-shrink:0; object-fit:contain; padding:4px; box-shadow:0 1px 4px rgba(0,0,0,.15);}
+  .topbar-text .company{font-size:10px; letter-spacing:.03em; color:#C8D0EC; margin:0 0 2px; text-transform:uppercase;}
+  .topbar-text h1{font-size:15px; font-weight:700; margin:0; color:#fff;}
+
+  .lang-toggle{display:flex; gap:6px;}
+  .lang-toggle button{
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25); color:#E4E8F7;
+    font-family:'Inter',sans-serif; font-size:11px; padding:5px 12px; border-radius:20px; cursor:pointer;
+  }
+  .lang-toggle button.active{color:var(--navy-dark); background:#fff; border-color:#fff; font-weight:700;}
+  .topbar-accent{height:3px; background:linear-gradient(90deg,var(--gold),#E3C98A,var(--gold));}
+
+  .shell{max-width:980px; margin:0 auto; padding:20px 14px 0;}
+
+  /* ---------- Sidebar / stepper ---------- */
+  .sidebar{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+    margin-bottom:16px;
+    box-shadow:var(--shadow);
+  }
+
+  .stepper{display:flex; flex-direction:row; gap:8px; margin:0; overflow-x:auto;}
+  .step{
+    display:flex; align-items:center; gap:8px; flex:1; min-width:0;
+    padding:8px 6px; border-radius:var(--radius); opacity:.6;
+  }
+  .step.active{opacity:1; background:var(--navy-light);}
+  .step.done{opacity:1;}
+  .step-num{
+    width:26px; height:26px; border-radius:50%; flex-shrink:0;
+    background:var(--panel-2); border:1.5px solid var(--line); color:var(--text-dim);
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;
+  }
+  .step.active .step-num{background:var(--navy); border-color:var(--navy); color:#fff;}
+  .step.done .step-num{background:var(--green); border-color:var(--green); color:#fff;}
+  .step-label{font-size:12px; color:var(--text-dim); white-space:nowrap; display:none;}
+  .step.active .step-label{color:var(--navy); font-weight:700;}
+  .step.done .step-label{color:var(--text);}
+
+  /* ---------- Main content ---------- */
+  .content{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .step-panel{padding:22px 20px; display:none;}
+  .step-panel.visible{display:block;}
+  .panel-title{font-size:17px; font-weight:700; margin:0 0 4px; color:var(--navy-dark);}
+  .panel-sub{font-size:12.5px; color:var(--text-dim); margin:0 0 20px;}
+
+  .field{margin-bottom:18px;}
+  .label{font-size:13px; color:var(--text-dim); margin:0 0 8px; display:block; font-weight:500;}
+  .required::after{content:" *"; color:var(--red);}
+
+  .type-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .type-btn{
+    flex:1; min-width:96px; background:var(--panel-2); border:1.5px solid var(--line); color:var(--text-dim);
+    border-radius:var(--radius); padding:14px 6px; font-family:inherit; font-size:13px;
+    display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer;
+  }
+  .type-btn svg{width:20px; height:20px;}
+  .type-btn[data-type="incident"].selected{background:var(--red-bg); border-color:var(--red); color:var(--red);}
+  .type-btn[data-type="near-miss"].selected{background:var(--amber-bg); border-color:var(--amber); color:var(--amber);}
+  .type-btn[data-type="suggestion"].selected{background:var(--green-bg); border-color:var(--green); color:var(--green);}
+
+  select,textarea,input{
+    width:100%; background:var(--panel-2); border:1px solid var(--line); color:var(--text);
+    border-radius:var(--radius); padding:11px 14px; font-family:inherit; font-size:14px;
+  }
+  select:focus,textarea:focus,input:focus{outline:none; border-color:var(--navy); box-shadow:0 0 0 3px var(--navy-light);}
+  textarea{resize:vertical; min-height:84px;}
+
+  .grid-2{display:flex; gap:12px; flex-wrap:wrap;}
+  .grid-2 > div{flex:1; min-width:140px;}
+
+  .date-row,.time-row{display:flex; gap:6px; align-items:center;}
+  .date-row select{min-width:0;}
+  .date-row select:nth-child(1){flex:0 0 62px;}
+  .date-row select:nth-child(2){flex:1.4;}
+  .date-row select:nth-child(3){flex:0 0 78px;}
+  .time-row select{min-width:0; flex:1;}
+  .time-row select:nth-child(1),
+  .time-row select:nth-child(2){flex:0 0 58px; text-align:center;}
+  .time-row select:nth-child(4){flex:0 0 62px;}
+  .time-colon{color:var(--text-dim); font-weight:700; flex:0 0 auto;}
+
+  .upload-box{
+    border:1.5px dashed var(--line); border-radius:var(--radius); padding:16px; background:var(--panel-2);
+    display:flex; align-items:center; gap:12px; color:var(--text-dim); font-size:13px;
+    cursor:pointer; position:relative;
+  }
+  .upload-box:hover{border-color:var(--navy); color:var(--navy);}
+  .upload-box input[type=file]{position:absolute; inset:0; opacity:0; cursor:pointer;}
+  .upload-box svg{width:22px; height:22px; flex-shrink:0;}
+  .file-name{font-size:12px; color:var(--navy); margin-top:6px; display:none; font-weight:500;}
+
+  .review-list{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .review-row{display:flex; justify-content:space-between; gap:12px; padding:10px 14px; font-size:13px; border-bottom:1px solid var(--line); background:var(--panel);}
+  .review-row:nth-child(even){background:var(--panel-2);}
+  .review-row:last-child{border-bottom:none;}
+  .review-row .k{color:var(--text-dim); flex-shrink:0;}
+  .review-row .v{text-align:end; font-weight:600; color:var(--navy-dark);}
+
+  .nav-row{display:flex; gap:10px; padding:0 20px 22px;}
+  .btn{
+    flex:1; border:none; border-radius:var(--radius); padding:13px; font-family:inherit; font-size:14px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
+    transition:background .15s ease;
+  }
+  .btn svg{width:17px; height:17px;}
+  .btn-primary{background:var(--navy); color:#fff;}
+  .btn-primary:hover{background:var(--navy-dark);}
+  .btn-ghost{background:var(--panel-2); color:var(--text); border:1px solid var(--line); flex:0 0 auto; padding-inline:20px;}
+  .btn-ghost:hover{background:var(--line);}
+
+  .status{
+    display:none; margin:0 20px 20px; padding:12px 14px; border-radius:var(--radius);
+    background:var(--green-bg); color:var(--green); font-size:13px; align-items:center; gap:8px;
+    border:1px solid #BEE9D3;
+  }
+  .status svg{width:16px; height:16px; flex-shrink:0;}
+
+  footer{text-align:center; font-size:11px; color:var(--text-dim); margin-top:20px; padding:0 14px;}
+
+  /* ---------- Desktop layout ---------- */
+  @media (min-width:860px){
+    .topbar{padding:16px 34px;}
+    .shell{display:flex; align-items:flex-start; gap:20px; padding:26px 34px 0;}
+    .sidebar{
+      width:250px; flex-shrink:0; position:sticky; top:20px; margin-bottom:0;
+      padding:20px;
+    }
+    .content{flex:1; min-width:0;}
+    .stepper{flex-direction:column;}
+    .step{padding:10px 8px;}
+    .step-label{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">
+    <img class="logo" src="data:image/webp;base64,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" alt="United Cement Industrial Company logo">
+    <div class="topbar-text">
+      <p class="company" data-ar="شركة اسمنت المتحدة الصناعية" data-en="United Cement Industrial Company">شركة اسمنت المتحدة الصناعية</p>
+      <h1 data-ar="بلاغات السلامة في المصنع" data-en="Plant safety reports">بلاغات السلامة في المصنع</h1>
+    </div>
+  </div>
+  <div class="lang-toggle">
+    <button type="button" id="btnAr" class="active">العربية</button>
+    <button type="button" id="btnEn">English</button>
+  </div>
+</header>
+<div class="topbar-accent"></div>
+
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="stepper" id="stepper">
+      <div class="step" data-step="1">
+        <div class="step-num">1</div>
+        <div class="step-label" data-ar="نوع البلاغ" data-en="Report type">نوع البلاغ</div>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-num">2</div>
+        <div class="step-label" data-ar="تفاصيل الحادث" data-en="Incident details">تفاصيل الحادث</div>
+      </div>
+      <div class="step" data-step="3">
+        <div class="step-num">3</div>
+        <div class="step-label" data-ar="بيانات المُبلّغ" data-en="Reporter info">بيانات المُبلّغ</div>
+      </div>
+      <div class="step" data-step="4">
+        <div class="step-num">4</div>
+        <div class="step-label" data-ar="المراجعة والإرسال" data-en="Review and submit">المراجعة والإرسال</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <form id="reportForm">
+
+      <div class="step-panel visible" data-panel="1">
+        <p class="panel-title" data-ar="ما نوع البلاغ؟" data-en="What type of report is this?">ما نوع البلاغ؟</p>
+        <p class="panel-sub" data-ar="اختر التصنيف والجهة المعنية بالحدث" data-en="Choose the category and the department involved">اختر التصنيف والجهة المعنية بالحدث</p>
+
+        <div class="field">
+          <span class="label required" data-ar="نوع البلاغ" data-en="Report type">نوع البلاغ</span>
+          <div class="type-row" id="typeRow">
+            <button type="button" class="type-btn" data-type="incident">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.29 3.86l-8.18 14A2 2 0 0 0 3.82 21h16.36a2 2 0 0 0 1.71-3.14l-8.18-14a2 2 0 0 0-3.42 0z"/></svg>
+              <span data-ar="حادث" data-en="Incident">حادث</span>
+            </button>
+            <button type="button" class="type-btn" data-type="near-miss">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span data-ar="على وشك الحدوث" data-en="Near miss">على وشك الحدوث</span>
+            </button>
+            <button type="button" class="type-btn" data-type="suggestion">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.5 1 1.3 1 2.1V16h6v-.4c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
+              <span data-ar="اقتراح" data-en="Suggestion">اقتراح</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label required" for="dept" data-ar="الجهة المعنية" data-en="Concerned department">الجهة المعنية</label>
+          <select id="dept" required></select>
+        </div>
+      </div>
+
+      <div class="step-panel" data-panel="2">
+        <p class="panel-title" data-ar="تفاصيل الحادث" data-en="Incident details">تفاصيل الحادث</p>
+        <p class="panel-sub" data-ar="اشرح ما حدث ومتى، وأرفق صورة إن وجدت" data-en="Describe what happened and when, and attach a photo if available">اشرح ما حدث ومتى، وأرفق صورة إن وجدت</p>
+
+        <div class="field">
+          <label class="label required" for="desc" data-ar="وصف الحادث" data-en="Incident description">وصف الحادث</label>
+          <textarea id="desc" required data-ph-ar="اشرح ما حدث، مكانه، والأشخاص المتأثرين" data-ph-en="Describe what happened, where, and who was affected" placeholder="اشرح ما حدث، مكانه، والأشخاص المتأثرين"></textarea>
+        </div>
+
+        <div class="field">
+          <span class="label" data-ar="مرفق توضيحي" data-en="Attachment">مرفق توضيحي</span>
+          <label class="upload-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span id="uploadText" data-ar="إرفاق صورة أو ملف يوضح الحدث (اختياري)" data-en="Attach a photo or file showing the incident (optional)">إرفاق صورة أو ملف يوضح الحدث (اختياري)</span>
+            <input type="file" id="fileInput" accept="image/*,.pdf">
+          </label>
+          <p class="file-name" id="fileName"></p>
+        </div>
+
+        <div class="field grid-2">
+          <div>
+            <label class="label required" data-ar="التاريخ (ميلادي)" data-en="Date (Gregorian)">التاريخ (ميلادي)</label>
+            <div class="date-row">
+              <select id="dateDay" required></select>
+              <select id="dateMonth" required></select>
+              <select id="dateYear" required></select>
+            </div>
+          </div>
+          <div>
+            <label class="label required" data-ar="الساعة" data-en="Time">الساعة</label>
+            <div class="time-row">
+              <select id="timeHour" required></select>
+              <span class="time-colon">:</span>
+              <select id="timeMinute" required></select>
+              <select id="timeAmPm" required></select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-panel" data-panel="3">
+        <p class="panel-title" data-ar="بيانات مقدّم البلاغ" data-en="Reporter details">بيانات مقدّم البلاغ</p>
+        <p class="panel-sub" data-ar="اختياري — يمكن إرسال البلاغ دون تعبئتها" data-en="Optional — you can submit the report without filling these in">اختياري — يمكن إرسال البلاغ دون تعبئتها</p>
+
+        <div class="field grid-2">
+          <div>
+            <label class="label" for="name" data-ar="الاسم الثلاثي" data-en="Full name">الاسم الثلاثي</label>
+            <input type="text" id="name" data-ph-ar="محمد عبدالله القحطاني" data-ph-en="John Smith" placeholder="محمد عبدالله القحطاني">
+          </div>
+          <div>
+            <label class="label" for="empId" data-ar="الرقم الوظيفي" data-en="Employee ID">الرقم الوظيفي</label>
+            <input type="text" id="empId" placeholder="00000">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="phone" data-ar="رقم الجوال" data-en="Mobile number">رقم الجوال</label>
+          <input type="tel" id="phone" placeholder="05xxxxxxxx">
+        </div>
+      </div>
+
+      <div class="step-panel" data-panel="4">
+        <p class="panel-title" data-ar="راجع بلاغك قبل الإرسال" data-en="Review your report before sending">راجع بلاغك قبل الإرسال</p>
+        <p class="panel-sub" data-ar="تأكد من صحة المعلومات التالية" data-en="Make sure the information below is correct">تأكد من صحة المعلومات التالية</p>
+        <div class="review-list" id="reviewList"></div>
+      </div>
+
+      <div class="nav-row" id="navRow">
+        <button type="button" class="btn btn-ghost" id="backBtn" style="display:none;">
+          <span data-ar="رجوع" data-en="Back">رجوع</span>
+        </button>
+        <button type="button" class="btn btn-primary" id="nextBtn">
+          <span data-ar="التالي" data-en="Next">التالي</span>
+        </button>
+        <button type="submit" class="btn btn-primary" id="submitBtn" style="display:none;">
+          <span data-ar="إرسال البلاغ" data-en="Submit report">إرسال البلاغ</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </div>
+
+      <div class="status" id="statusBox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        <span data-ar="تم إرسال البلاغ بنجاح. شكرًا لمساهمتك في سلامة المصنع." data-en="Report submitted successfully. Thank you for helping keep the plant safe.">تم إرسال البلاغ بنجاح. شكرًا لمساهمتك في سلامة المصنع.</span>
+      </div>
+    </form>
+  </main>
+</div>
+<footer data-ar="محفوظة شركة اسمنت المتحدة الصناعية 2026 جميع الحقوق" data-en="© United Cement Industrial Company 2026. All rights reserved.">محفوظة شركة اسمنت المتحدة الصناعية 2026 جميع الحقوق</footer>
+
+<script>
+  const departments = [
+    {ar:"اختر الجهة المعنية بالحدث", en:"Select the department concerned", value:""},
+    {ar:"المحاجر والكسارات", en:"Quarries and crushers"},
+    {ar:"مخازن الحجر الجيري ومنطقة الخزانات الخمسة", en:"Limestone storage and the five-silo area"},
+    {ar:"السخان الابتدائي والأفران", en:"Preheater and kilns"},
+    {ar:"الطواحين الأولية وصوامع الطواحين", en:"Raw mills and mill silos"},
+    {ar:"المبرد وصوامع الكلينكر", en:"Cooler and clinker silos"},
+    {ar:"طواحين الأسمنت وصوامع الأسمنت", en:"Cement mills and cement silos"},
+    {ar:"التعبئة والتسليم", en:"Packing and delivery"},
+    {ar:"محطة الطاقة / خزانات وقود الكهرباء", en:"Power station / fuel tanks"},
+    {ar:"الورشة (الكراج)", en:"Workshop (garage)"},
+    {ar:"معالجة المياه", en:"Water treatment"},
+    {ar:"منطقة السكراب (الخردة)", en:"Scrap area"},
+    {ar:"قسم الأمن والإطفاء", en:"Security and fire department"},
+    {ar:"العيادة الطبية", en:"Medical clinic"},
+    {ar:"ورشة الصيانة", en:"Maintenance workshop"},
+    {ar:"إدارة المستودعات", en:"Warehouse management"},
+    {ar:"أقسام الرعاية والخدمات", en:"Welfare and services departments"},
+    {ar:"إدارة الموارد البشرية", en:"Human resources"},
+    {ar:"المختبر والجودة", en:"Laboratory and quality"},
+    {ar:"إدارة المبيعات", en:"Sales department"},
+    {ar:"القسم الكهربائي", en:"Electrical department"},
+    {ar:"الإدارة المالية (المحاسبة)", en:"Finance department (accounting)"},
+    {ar:"إدارة هندسة المصنع", en:"Plant engineering"},
+    {ar:"قسم التخطيط والتصميم", en:"Planning and design"},
+    {ar:"أقسام الإنتاج", en:"Production departments"},
+    {ar:"إدارة الصيانة", en:"Maintenance department"}
+  ];
+
+  const typeLabels = {
+    incident:{ar:"حادث", en:"Incident"},
+    "near-miss":{ar:"على وشك الحدوث", en:"Near miss"},
+    suggestion:{ar:"اقتراح", en:"Suggestion"}
+  };
+
+  const monthNames = [
+    {ar:"يناير", en:"January"}, {ar:"فبراير", en:"February"}, {ar:"مارس", en:"March"},
+    {ar:"أبريل", en:"April"}, {ar:"مايو", en:"May"}, {ar:"يونيو", en:"June"},
+    {ar:"يوليو", en:"July"}, {ar:"أغسطس", en:"August"}, {ar:"سبتمبر", en:"September"},
+    {ar:"أكتوبر", en:"October"}, {ar:"نوفمبر", en:"November"}, {ar:"ديسمبر", en:"December"}
+  ];
+
+  const deptSelect = document.getElementById('dept');
+  const dayEl = document.getElementById('dateDay');
+  const monthEl = document.getElementById('dateMonth');
+  const yearEl = document.getElementById('dateYear');
+  const hourEl = document.getElementById('timeHour');
+  const minuteEl = document.getElementById('timeMinute');
+  const ampmEl = document.getElementById('timeAmPm');
+  let currentLang = 'ar';
+  let currentStep = 1;
+  const totalSteps = 4;
+  let selectedType = '';
+
+  function renderDepartments(lang){
+    const selectedIndex = deptSelect.selectedIndex;
+    deptSelect.innerHTML = '';
+    departments.forEach(d=>{
+      const opt = document.createElement('option');
+      opt.value = d.value !== undefined ? d.value : d.ar;
+      opt.textContent = lang === 'en' ? d.en : d.ar;
+      deptSelect.appendChild(opt);
+    });
+    if(selectedIndex >= 0) deptSelect.selectedIndex = selectedIndex;
+  }
+  renderDepartments('ar');
+
+  function fillOptions(select, items, placeholder){
+    const prevValue = select.value;
+    select.innerHTML = '';
+    if(placeholder){
+      const opt = document.createElement('option');
+      opt.value = '';
+      opt.textContent = placeholder;
+      select.appendChild(opt);
+    }
+    items.forEach(({value, label})=>{
+      const opt = document.createElement('option');
+      opt.value = value;
+      opt.textContent = label;
+      select.appendChild(opt);
+    });
+    if(prevValue) select.value = prevValue;
+  }
+
+  function renderDateTime(lang){
+    const todayYear = new Date().getFullYear();
+
+    fillOptions(dayEl,
+      Array.from({length:31}, (_, i)=>({value:String(i+1), label:String(i+1)})),
+      lang==='en' ? 'Day' : 'اليوم'
+    );
+
+    fillOptions(monthEl,
+      monthNames.map((m, i)=>({value:String(i+1), label: lang==='en' ? m.en : m.ar})),
+      lang==='en' ? 'Month' : 'الشهر'
+    );
+
+    fillOptions(yearEl,
+      Array.from({length: 2060 - todayYear + 1}, (_, i)=>{
+        const y = todayYear + i;
+        return {value:String(y), label:String(y)};
+      }),
+      lang==='en' ? 'Year' : 'السنة'
+    );
+
+    fillOptions(hourEl,
+      Array.from({length:12}, (_, i)=>{
+        const h = i+1;
+        return {value:String(h).padStart(2,'0'), label:String(h).padStart(2,'0')};
+      }),
+      lang==='en' ? 'HH' : 'ساعة'
+    );
+
+    fillOptions(minuteEl,
+      Array.from({length:60}, (_, i)=>({value:String(i).padStart(2,'0'), label:String(i).padStart(2,'0')})),
+      lang==='en' ? 'MM' : 'دقيقة'
+    );
+
+    fillOptions(ampmEl,
+      [
+        {value:'AM', label: lang==='en' ? 'AM' : 'ص'},
+        {value:'PM', label: lang==='en' ? 'PM' : 'م'}
+      ],
+      lang==='en' ? 'AM/PM' : 'ص/م'
+    );
+  }
+  renderDateTime('ar');
+
+  function setLang(lang){
+    currentLang = lang;
+    const html = document.getElementById('htmlRoot');
+    html.lang = lang;
+    html.dir = lang === 'en' ? 'ltr' : 'rtl';
+    document.querySelectorAll('[data-ar]').forEach(el=>{
+      el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
+    });
+    document.querySelectorAll('[data-ph-ar]').forEach(el=>{
+      el.placeholder = lang === 'en' ? el.dataset.phEn : el.dataset.phAr;
+    });
+    renderDepartments(lang);
+    renderDateTime(lang);
+    document.getElementById('btnAr').classList.toggle('active', lang==='ar');
+    document.getElementById('btnEn').classList.toggle('active', lang==='en');
+    if(currentStep === 4) buildReview();
+  }
+
+  document.getElementById('btnAr').addEventListener('click', ()=>setLang('ar'));
+  document.getElementById('btnEn').addEventListener('click', ()=>setLang('en'));
+
+  const typeButtons = document.querySelectorAll('.type-btn');
+  typeButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      typeButtons.forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedType = btn.dataset.type;
+    });
+  });
+
+  const fileInput = document.getElementById('fileInput');
+  const fileNameEl = document.getElementById('fileName');
+  fileInput.addEventListener('change', ()=>{
+    if(fileInput.files.length){
+      fileNameEl.style.display='block';
+      fileNameEl.textContent = (currentLang==='en' ? 'Attached file: ' : 'الملف المرفق: ') + fileInput.files[0].name;
+    }
+  });
+
+  function showStep(n){
+    document.querySelectorAll('.step-panel').forEach(p=>p.classList.toggle('visible', +p.dataset.panel === n));
+    document.querySelectorAll('.step').forEach(s=>{
+      const sn = +s.dataset.step;
+      s.classList.toggle('active', sn === n);
+      s.classList.toggle('done', sn < n);
+    });
+    document.getElementById('backBtn').style.display = n === 1 ? 'none' : 'flex';
+    document.getElementById('nextBtn').style.display = n === totalSteps ? 'none' : 'flex';
+    document.getElementById('submitBtn').style.display = n === totalSteps ? 'flex' : 'none';
+    if(n === totalSteps) buildReview();
+  }
+
+  function validateStep(n){
+    if(n === 1){
+      if(!selectedType){ alert(currentLang==='en' ? 'Please select a report type' : 'الرجاء اختيار نوع البلاغ'); return false; }
+      if(!deptSelect.value){ alert(currentLang==='en' ? 'Please select the concerned department' : 'الرجاء اختيار الجهة المعنية'); return false; }
+    }
+    if(n === 2){
+      const desc = document.getElementById('desc').value.trim();
+      const dateOk = dayEl.value && monthEl.value && yearEl.value;
+      const timeOk = hourEl.value && minuteEl.value && ampmEl.value;
+      if(!desc){ alert(currentLang==='en' ? 'Please describe the incident' : 'الرجاء كتابة وصف الحادث'); return false; }
+      if(!dateOk || !timeOk){ alert(currentLang==='en' ? 'Please select the date and time' : 'الرجاء تحديد التاريخ والساعة'); return false; }
+    }
+    return true;
+  }
+
+  function getDateText(lang){
+    if(!dayEl.value || !monthEl.value || !yearEl.value) return '';
+    const m = monthNames[parseInt(monthEl.value,10)-1];
+    const monthLabel = lang==='en' ? m.en : m.ar;
+    return lang==='en'
+      ? `${dayEl.value} ${monthLabel} ${yearEl.value}`
+      : `${dayEl.value} ${monthLabel} ${yearEl.value}`;
+  }
+
+  function getTimeText(lang){
+    if(!hourEl.value || !minuteEl.value || !ampmEl.value) return '';
+    const ampmLabel = ampmEl.value==='AM' ? (lang==='en'?'AM':'ص') : (lang==='en'?'PM':'م');
+    return `${hourEl.value}:${minuteEl.value} ${ampmLabel}`;
+  }
+
+  function buildReview(){
+    const rows = [
+      [currentLang==='en'?'Report type':'نوع البلاغ', selectedType ? (typeLabels[selectedType][currentLang]) : '—'],
+      [currentLang==='en'?'Department':'الجهة المعنية', deptSelect.value || '—'],
+      [currentLang==='en'?'Description':'الوصف', document.getElementById('desc').value.trim() || '—'],
+      [currentLang==='en'?'Date':'التاريخ', getDateText(currentLang) || '—'],
+      [currentLang==='en'?'Time':'الساعة', getTimeText(currentLang) || '—'],
+      [currentLang==='en'?'Name':'الاسم', document.getElementById('name').value.trim() || '—'],
+      [currentLang==='en'?'Mobile':'الجوال', document.getElementById('phone').value.trim() || '—']
+    ];
+    const list = document.getElementById('reviewList');
+    list.innerHTML = '';
+    rows.forEach(([k,v])=>{
+      const row = document.createElement('div');
+      row.className = 'review-row';
+      row.innerHTML = `<span class="k">${k}</span><span class="v">${v}</span>`;
+      list.appendChild(row);
+    });
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    if(!validateStep(currentStep)) return;
+    currentStep = Math.min(totalSteps, currentStep + 1);
+    showStep(currentStep);
+  });
+  document.getElementById('backBtn').addEventListener('click', ()=>{
+    currentStep = Math.max(1, currentStep - 1);
+    showStep(currentStep);
+  });
+  document.querySelectorAll('.step').forEach(s=>{
+    s.style.cursor = 'pointer';
+    s.addEventListener('click', ()=>{
+      const target = +s.dataset.step;
+      if(target < currentStep){ currentStep = target; showStep(currentStep); }
+    });
+  });
+
+  const form = document.getElementById('reportForm');
+  const statusBox = document.getElementById('statusBox');
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    statusBox.style.display = 'flex';
+    document.getElementById('navRow').style.display = 'none';
+  });
+
+  showStep(1);
+</script>
+</body>
+</html>
